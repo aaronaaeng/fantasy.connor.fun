@@ -1,70 +1,91 @@
 package fun.connor.fantasy.Statistics;
 
-class BowlingData extends AbstractGameData {
-    protected Double firstBallAverage;
-    protected Double multiPinSpareAverage;
-    protected Double singlePinSpareAverage;
-    protected Double speedAverage;
-    protected Double matchWinLoss;
-    protected Integer gamesPlayed;
+public class BowlingData {
+    private Double firstBallAverage;
+    private Double multiPinSpareAverage;
+    private Double singlePinSpareAverage;
+    private Double speedAverage;
+    private Double matchWinLoss;
+    private Integer gamesPlayed;
 
-    public Double getFirstBallAverage()
+    public BowlingData()
+    {
+        this.firstBallAverage = 0.0;
+        this.multiPinSpareAverage = 0.0;
+        this.singlePinSpareAverage = 0.0;
+        this.speedAverage = 0.0;
+        this.matchWinLoss = 0.0;
+        this.gamesPlayed = 0;
+    }
+
+    public BowlingData(Double firstBallAverage, Double multiPinSpareAverage, Double singlePinSpareAverage,
+                       Double speedAverage, Double matchWinLoss, Integer gamesPlayed)
+    {
+        this.firstBallAverage = firstBallAverage;
+        this.multiPinSpareAverage = multiPinSpareAverage;
+        this.singlePinSpareAverage = singlePinSpareAverage;
+        this.speedAverage = speedAverage;
+        this.matchWinLoss = matchWinLoss;
+        this.gamesPlayed = gamesPlayed;
+    }
+
+    private Double recalculateAverage(Double currentAverage, Double newValue)
+    {
+        return ((currentAverage * this.gamesPlayed) + newValue) / (this.gamesPlayed + 1);
+    }
+
+    Double getFirstBallAverage()
     {
         return firstBallAverage;
     }
 
-    public void setFirstBallAverage(Double firstBallAverage)
+     void updateFirstBallAverage(Double firstBallAverage)
     {
-        this.firstBallAverage = firstBallAverage;
+        this.firstBallAverage = this.recalculateAverage(this.firstBallAverage, firstBallAverage);
     }
 
-    public Double getMultiPinSpareAverage()
+    Double getMultiPinSpareAverage()
     {
         return multiPinSpareAverage;
     }
 
-    public void setMultiPinSpareAverage(Double multiPinSpareAverage)
+    void updateMultiPinSpareAverage(Double multiPinSpareAverage)
     {
-        this.multiPinSpareAverage = multiPinSpareAverage;
+        this.multiPinSpareAverage = this.recalculateAverage(this.multiPinSpareAverage, multiPinSpareAverage);
     }
 
-    public Double getSinglePinSpareAverage()
+    Double getSinglePinSpareAverage()
     {
         return singlePinSpareAverage;
     }
 
-    public void setSinglePinSpareAverage(Double singlePinSpareAverage)
+    void updateSinglePinSpareAverage(Double singlePinSpareAverage)
     {
-        this.singlePinSpareAverage = singlePinSpareAverage;
+        this.singlePinSpareAverage = this.recalculateAverage(this.singlePinSpareAverage, singlePinSpareAverage);
     }
 
-    public Double getSpeedAverage()
+    Double getSpeedAverage()
     {
         return speedAverage;
     }
 
-    public void setSpeedAverage(Double speedAverage)
+    void updateSpeedAverage(Double speedAverage)
     {
-        this.speedAverage = speedAverage;
+        this.speedAverage= this.recalculateAverage(this.speedAverage, speedAverage);
     }
 
-    public Double getMatchWinLoss()
+    Double getMatchWinLoss()
     {
         return matchWinLoss;
     }
 
-    public void setMatchWinLoss(Double matchWinLoss)
+    void updateMatchWinLoss(Double matchWinLoss)
     {
-        this.matchWinLoss = matchWinLoss;
+        this.matchWinLoss= this.recalculateAverage(this.matchWinLoss, matchWinLoss);
     }
 
-    public Integer getGamesPlayed()
+    void updateGamesPlayed()
     {
-        return gamesPlayed;
-    }
-
-    public void setGamesPlayed(Integer gamesPlayed)
-    {
-        this.gamesPlayed = gamesPlayed;
+        this.gamesPlayed += 1;
     }
 }

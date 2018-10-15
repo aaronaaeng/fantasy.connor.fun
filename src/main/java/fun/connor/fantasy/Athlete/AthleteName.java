@@ -4,7 +4,7 @@ public class AthleteName {
     private final String firstName;
     private final String lastName;
 
-    AthleteName(String firstName, String lastName)
+    public AthleteName(String firstName, String lastName)
     {
         this.firstName = firstName;
         this.lastName = lastName;

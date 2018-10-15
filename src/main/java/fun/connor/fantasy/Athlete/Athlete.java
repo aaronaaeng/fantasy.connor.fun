@@ -2,16 +2,15 @@ package fun.connor.fantasy.Athlete;
 
 import fun.connor.fantasy.Statistics.AthleteValuation;
 import fun.connor.fantasy.Statistics.GameAddition;
-import fun.connor.fantasy.Statistics.AbstractGameData;
 
 import java.util.UUID;
 
-public class Athlete<AthleteStatistics extends GameAddition & AthleteValuation, GameData> {
+public class Athlete<AthleteStatistics extends GameAddition & AthleteValuation> {
     private final UUID athleteID;
     private final AthleteName athleteName;
     private final AthleteStatistics athleteStatistics;
 
-    Athlete(UUID athleteID, AthleteName athleteName, AthleteStatistics athleteStatistics)
+    public Athlete(UUID athleteID, AthleteName athleteName, AthleteStatistics athleteStatistics)
     {
         this.athleteID = athleteID;
         this.athleteName = athleteName;
@@ -31,10 +30,5 @@ public class Athlete<AthleteStatistics extends GameAddition & AthleteValuation, 
     public AthleteStatistics getAthleteStatistics()
     {
         return this.athleteStatistics;
-    }
-
-    public void addGame(GameData gameData)
-    {
-        this.athleteStatistics.addGame(gameData);
     }
 }
