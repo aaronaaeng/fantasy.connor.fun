@@ -3,6 +3,7 @@ package fun.connor.fantasy;
 import com.google.gson.Gson;
 import fun.connor.fantasy.Athlete.Athlete;
 import fun.connor.fantasy.Athlete.AthleteName;
+import fun.connor.fantasy.Endpoints.Endpoints;
 import fun.connor.fantasy.Statistics.BowlerStatistics;
 import fun.connor.fantasy.Statistics.BowlingData;
 
@@ -15,5 +16,6 @@ public class mainSimple {
         testAthlete.getAthleteStatistics().addGame(new BowlingData(1.4, 1.0, 0.1, 0.6, 0.6, 1));
         Gson gson = new Gson();
         System.out.println(gson.toJson(testAthlete));
+        Endpoints.Serve();
     }
 }
