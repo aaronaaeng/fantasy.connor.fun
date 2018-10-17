@@ -1,61 +1,41 @@
 package fun.connor.fantasy.Athlete;
 
-import fun.connor.fantasy.Statistics.Statistics;
+import fun.connor.fantasy.Statistics.AthleteValuation;
+import fun.connor.fantasy.Statistics.GameAddition;
 
-import javax.json.Json;
-import javax.json.JsonObject;
-import javax.json.JsonReader;
-import java.io.StringReader;
+import java.util.UUID;
 
-/**
- * Created by Aaron on 9/29/2018.
- */
-abstract public class Athlete {
-    private String name;
-    private String description;
-    private Statistics statistics;
+public class Athlete<T extends GameAddition & AthleteValuation> {
+    private final UUID athleteID;
+    private final AthleteName athleteName;
+    private final T athleteStatistics;
 
-    Athlete(String bowlerData, Statistics statsModule) {
-        this.statistics = statsModule;
-
-        JsonReader jsonReader = Json.createReader(new StringReader(bowlerData));
-        JsonObject dataObject = jsonReader.readObject();
-
-        this.setName(dataObject.getString("athleteName"));
-        this.setDescription(dataObject.getString("athleteDesc"));
-
-        String athleteStats = dataObject.getString("athleteStats");
-
-        this.statistics.addGame(athleteStats);
+    public Athlete()
+    {
+        this.athleteID = new UUID(0, 0);
+        this.athleteName = new AthleteName("", "");
+        this.athleteStatistics = null;
     }
 
-    public String getName()
+    public Athlete(UUID athleteID, AthleteName athleteName, T athleteStatistics)
     {
-        return this.name;
+        this.athleteID = athleteID;
+        this.athleteName = athleteName;
+        this.athleteStatistics = athleteStatistics;
     }
 
-    private void setName(String name)
+    public UUID getAthleteID()
     {
-        this.name = name;
+        return this.athleteID;
     }
 
-    public String getDescription()
+    public AthleteName getAthleteName()
     {
-        return this.description;
+        return this.athleteName;
     }
 
-    private void setDescription(String description)
+    public T getAthleteStatistics()
     {
-        this.description = description;
-    }
-
-    public Double getAthleteValue()
-    {
-        return this.statistics.getAthleteValue();
-    }
-
-    public String getAthleteStatisticsJson()
-    {
-        return this.statistics.getAthleteStatisticsJson();
+        return this.athleteStatistics;
     }
 }
