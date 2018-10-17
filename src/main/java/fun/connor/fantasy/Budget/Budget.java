@@ -4,7 +4,7 @@ public class Budget {
     private final Double totalFunds;
     private Double remainingFunds;
 
-    Budget(Double totalFunds)
+    public Budget(Double totalFunds)
     {
         this.totalFunds = totalFunds;
         this.remainingFunds = totalFunds;
@@ -20,7 +20,7 @@ public class Budget {
         return totalFunds;
     }
 
-    public boolean hirePlayer(Double playerCost)
+    public boolean hireAthlete(Double playerCost)
     {
         if (playerCost < this.remainingFunds)
         {
@@ -33,7 +33,7 @@ public class Budget {
         }
     }
 
-    public boolean firePlayer(Double playerCost)
+    public boolean fireAthlete(Double playerCost)
     {
         if (this.remainingFunds + playerCost < this.totalFunds)
         {

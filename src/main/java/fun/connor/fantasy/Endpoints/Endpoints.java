@@ -1,17 +1,84 @@
 package fun.connor.fantasy.Endpoints;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import fun.connor.fantasy.Athlete.Athlete;
+import fun.connor.fantasy.Authentication.Authentication;
+import fun.connor.fantasy.Database.DatabaseAccessObject;
+import fun.connor.fantasy.League.LeagueManager;
+import fun.connor.fantasy.Statistics.BowlerStatistics;
+
+import java.util.UUID;
+
 import static spark.Spark.*;
 
 public class Endpoints {
-    public static void Serve() {
-        get("/hello", (req, res) -> {
-            System.out.println("get received");
-            return "Hello World";
+    private final Authentication authentication;
+    private final DatabaseAccessObject databaseAccessObject;
+    private final LeagueManager leagueManager;
+    private final Gson gson;
+
+    public Endpoints(Authentication authentication, DatabaseAccessObject databaseAccessObject, LeagueManager leagueManager)
+    {
+        this.authentication = authentication;
+        this.databaseAccessObject = databaseAccessObject;
+        this.leagueManager = leagueManager;
+        this.gson = new Gson();
+    }
+
+    public void Serve() {
+        post("/login", (req, res) -> {
+            String userName = req.queryParams("userName");
+            String passHash = req.queryParams("passHash");
+            return this.authentication.authenticateUserLogin(userName, passHash);
         });
 
-        post("/create_bowler", (req, res) -> {
-            System.out.println("get received");
-            return "Hello World";
+        post("/create_league", (req, res) -> {
+            Double teamBudget = Double.valueOf(req.queryParamOrDefault("teamBudget", "1000"));
+            return this.leagueManager.createLeague(teamBudget);
+        });
+
+        post("/add_team", (req, res) -> {
+            UUID leagueId = UUID.fromString(req.queryParams("leagueId"));
+            UUID userId = UUID.fromString(req.queryParams("userId"));
+            return this.leagueManager.addTeam(leagueId, userId);
+        });
+
+        post("/create_athlete", (req, res) -> {
+            String athleteData = req.queryParamOrDefault("athleteData", "{}");
+            Athlete<BowlerStatistics> athlete = gson.fromJson(athleteData, new TypeToken<Athlete<BowlerStatistics>>(){}.getType());
+            this.databaseAccessObject.saveAthlete(athlete);
+            return "true";
+        });
+
+        post("/hire_athlete", (req, res) -> {
+            String accessToken = req.queryParams("accessToken");
+            UUID leagueId = UUID.fromString(req.queryParams("leagueId"));
+            UUID userId = UUID.fromString(req.queryParams("userId"));
+            UUID athleteId = UUID.fromString(req.queryParams("athleteId"));
+
+            if (this.authentication.authenticateUserAccess(accessToken, leagueId))
+            {
+                return this.leagueManager.hireAthlete(leagueId, userId, athleteId);
+            }
+            else
+            {
+                return false;
+            }
+
+        });
+
+        post("/fire_athlete", (req, res) -> {
+            UUID leagueId = UUID.fromString(req.queryParams("leagueId"));
+            UUID userId = UUID.fromString(req.queryParams("userId"));
+            UUID athleteId = UUID.fromString(req.queryParams("athleteId"));
+
+            return this.leagueManager.fireAthlete(leagueId, userId, athleteId);
+        });
+
+        get("/get_league_standings", (req, res) -> {
+            UUID leagueId = UUID.fromString(req.queryParams("leagueId"));
+            return this.leagueManager.getLeagueStandings(leagueId);
         });
     }
 }

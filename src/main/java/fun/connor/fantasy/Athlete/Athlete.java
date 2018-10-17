@@ -5,12 +5,19 @@ import fun.connor.fantasy.Statistics.GameAddition;
 
 import java.util.UUID;
 
-public class Athlete<AthleteStatistics extends GameAddition & AthleteValuation> {
+public class Athlete<T extends GameAddition & AthleteValuation> {
     private final UUID athleteID;
     private final AthleteName athleteName;
-    private final AthleteStatistics athleteStatistics;
+    private final T athleteStatistics;
 
-    public Athlete(UUID athleteID, AthleteName athleteName, AthleteStatistics athleteStatistics)
+    public Athlete()
+    {
+        this.athleteID = new UUID(0, 0);
+        this.athleteName = new AthleteName("", "");
+        this.athleteStatistics = null;
+    }
+
+    public Athlete(UUID athleteID, AthleteName athleteName, T athleteStatistics)
     {
         this.athleteID = athleteID;
         this.athleteName = athleteName;
@@ -27,7 +34,7 @@ public class Athlete<AthleteStatistics extends GameAddition & AthleteValuation> 
         return this.athleteName;
     }
 
-    public AthleteStatistics getAthleteStatistics()
+    public T getAthleteStatistics()
     {
         return this.athleteStatistics;
     }
