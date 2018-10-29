@@ -10,7 +10,7 @@ import java.util.UUID;
 
 public class LeagueManager {
     private final DatabaseAccessObject databaseAccessObject;
-    private final HashMap<UUID, League> leagueHashMap = new HashMap<>();
+    private final HashMap<UUID, League> leagueHashMap = new HashMap<UUID, League>();
 
     public LeagueManager(DatabaseAccessObject databaseAccessObject)
     {
@@ -34,7 +34,7 @@ public class LeagueManager {
         }
         else
         {
-            return new ArrayList<>();
+            return new ArrayList<Double>();
         }
     }
 
@@ -81,7 +81,8 @@ public class LeagueManager {
 
     private Double getAthleteValue(UUID athleteId)
     {
-        Athlete<BowlerStatistics> athlete = this.databaseAccessObject.loadAthlete(athleteId);
-        return athlete.getAthleteStatistics().getAthleteValue();
+//        Athlete<BowlerStatistics> athlete = this.databaseAccessObject.loadAthlete(athleteId);
+//        return athlete.getAthleteStatistics().getAthleteValue();
+        return 0.0;
     }
 }

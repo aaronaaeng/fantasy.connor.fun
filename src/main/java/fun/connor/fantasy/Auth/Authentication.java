@@ -1,4 +1,4 @@
-package fun.connor.fantasy.Authentication;
+package fun.connor.fantasy.Auth;
 
 import fun.connor.fantasy.Users.Account;
 import fun.connor.fantasy.Users.User;

@@ -21,13 +21,13 @@ public class DatabaseAccessObject {
         dataStore.ensureIndexes();
     }
 
-    public <T> T loadAthlete(UUID athleteID)
+    public Athlete loadAthlete(UUID athleteID)
     {
-        T athlete = gson.fromJson("test", new TypeToken<Athlete<BowlerStatistics>>(){}.getType());
+        Athlete athlete = gson.fromJson("test", Athlete.class);
         return athlete;
     }
 
-    public void saveAthlete(Athlete<BowlerStatistics> athlete)
+    public void saveAthlete(Athlete athlete)
     {
         dataStore.save(athlete);
     }

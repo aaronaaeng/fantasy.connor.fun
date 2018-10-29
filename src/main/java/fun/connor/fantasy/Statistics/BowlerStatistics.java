@@ -1,17 +1,18 @@
 package fun.connor.fantasy.Statistics;
 
-public class BowlerStatistics implements GameAddition<BowlingData>, AthleteValuation {
-    private BowlingData bowlingData = new BowlingData();
+public class BowlerStatistics implements AthleteStatistics {
+    private BowlerData bowlerData = new BowlerData();
     private Double athleteValue = 0.0;
 
-    public void addGame(BowlingData gameData)
+    public void addGame(GameData gameData)
     {
-        this.bowlingData.updateFirstBallAverage(gameData.getFirstBallAverage());
-        this.bowlingData.updateMultiPinSpareAverage(gameData.getMultiPinSpareAverage());
-        this.bowlingData.updateSinglePinSpareAverage(gameData.getSinglePinSpareAverage());
-        this.bowlingData.updateSpeedAverage(gameData.getSpeedAverage());
-        this.bowlingData.updateMatchWinLoss(gameData.getMatchWinLoss());
-        this.bowlingData.updateGamesPlayed();
+        BowlerData bowlerData = (BowlerData) gameData;
+        this.bowlerData.updateFirstBallAverage(bowlerData.getFirstBallAverage());
+        this.bowlerData.updateMultiPinSpareAverage(bowlerData.getMultiPinSpareAverage());
+        this.bowlerData.updateSinglePinSpareAverage(bowlerData.getSinglePinSpareAverage());
+        this.bowlerData.updateSpeedAverage(bowlerData.getSpeedAverage());
+        this.bowlerData.updateMatchWinLoss(bowlerData.getMatchWinLoss());
+        this.bowlerData.updateGamesPlayed();
         this.updateAthleteValue();
     }
 

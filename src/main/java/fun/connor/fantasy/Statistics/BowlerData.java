@@ -1,6 +1,6 @@
 package fun.connor.fantasy.Statistics;
 
-public class BowlingData {
+public class BowlerData extends GameData {
     private Double firstBallAverage;
     private Double multiPinSpareAverage;
     private Double singlePinSpareAverage;
@@ -8,7 +8,7 @@ public class BowlingData {
     private Double matchWinLoss;
     private Integer gamesPlayed;
 
-    public BowlingData()
+    public BowlerData()
     {
         this.firstBallAverage = 0.0;
         this.multiPinSpareAverage = 0.0;
@@ -18,8 +18,8 @@ public class BowlingData {
         this.gamesPlayed = 0;
     }
 
-    public BowlingData(Double firstBallAverage, Double multiPinSpareAverage, Double singlePinSpareAverage,
-                       Double speedAverage, Double matchWinLoss, Integer gamesPlayed)
+    public BowlerData(Double firstBallAverage, Double multiPinSpareAverage, Double singlePinSpareAverage,
+                      Double speedAverage, Double matchWinLoss, Integer gamesPlayed)
     {
         this.firstBallAverage = firstBallAverage;
         this.multiPinSpareAverage = multiPinSpareAverage;
