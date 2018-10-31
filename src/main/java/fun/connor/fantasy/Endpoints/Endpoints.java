@@ -9,6 +9,7 @@ import fun.connor.fantasy.Database.DatabaseAccessObject;
 import fun.connor.fantasy.League.LeagueManager;
 import fun.connor.fantasy.Statistics.BowlerStatistics;
 
+import java.util.HashMap;
 import java.util.UUID;
 
 import static spark.Spark.*;
@@ -55,6 +56,13 @@ public class Endpoints {
             this.databaseAccessObject.saveAthlete(athlete);
             return "true";
         });
+
+        post("/get_athlete", (req, res) -> {
+            String athleteIDString = req.queryParams("athleteID");
+            UUID athleteId = UUID.fromString(athleteIDString);
+            return this.databaseAccessObject.loadAthlete(athleteId);
+        });
+
 
         post("/hire_athlete", (req, res) -> {
             String accessToken = req.queryParams("accessToken");

@@ -7,7 +7,7 @@ import java.util.Map;
  * Created by Aaron on 10/28/2018.
  */
 public class AthleteFactory {
-    private Map<String, Athlete> athleteMap = new HashMap<>() {
+    private Map<String, Athlete> athleteMap = new HashMap<String, Athlete>() {
         {
             put("bowler", new Bowler());
         }
