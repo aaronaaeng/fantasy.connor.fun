@@ -1,6 +1,7 @@
 package fun.connor.fantasy;
 
-import fun.connor.fantasy.Authentication.Authentication;
+import fun.connor.fantasy.Athlete.AthleteFactory;
+import fun.connor.fantasy.Auth.Authentication;
 import fun.connor.fantasy.Database.DatabaseAccessObject;
 import fun.connor.fantasy.Endpoints.Endpoints;
 import fun.connor.fantasy.League.LeagueManager;
@@ -11,7 +12,8 @@ public class Main {
         Authentication authentication = new Authentication();
         DatabaseAccessObject databaseAccessObject = new DatabaseAccessObject();
         LeagueManager leagueManager = new LeagueManager(databaseAccessObject);
-        Endpoints endpoints = new Endpoints(authentication, databaseAccessObject, leagueManager);
+        AthleteFactory athleteFactory = new AthleteFactory();
+        Endpoints endpoints = new Endpoints(authentication, databaseAccessObject, leagueManager, athleteFactory);
         endpoints.Serve();
     }
 }

@@ -1,26 +1,21 @@
 package fun.connor.fantasy.Athlete;
 
-import fun.connor.fantasy.Statistics.AthleteValuation;
-import fun.connor.fantasy.Statistics.GameAddition;
+
+import fun.connor.fantasy.Statistics.AthleteStatistics;
 
 import java.util.UUID;
 
-public class Athlete<T extends GameAddition & AthleteValuation> {
-    private final UUID athleteID;
-    private final AthleteName athleteName;
-    private final T athleteStatistics;
+public abstract class Athlete {
+    private UUID athleteID;
+    private AthleteName athleteName;
+    private String athleteType;
+    private AthleteStatistics athleteStatistics;
 
-    public Athlete()
-    {
-        this.athleteID = new UUID(0, 0);
-        this.athleteName = new AthleteName("", "");
-        this.athleteStatistics = null;
-    }
-
-    public Athlete(UUID athleteID, AthleteName athleteName, T athleteStatistics)
+    Athlete(UUID athleteID, AthleteName athleteName, String athleteType, AthleteStatistics athleteStatistics)
     {
         this.athleteID = athleteID;
         this.athleteName = athleteName;
+        this.athleteType = athleteType;
         this.athleteStatistics = athleteStatistics;
     }
 
@@ -34,8 +29,8 @@ public class Athlete<T extends GameAddition & AthleteValuation> {
         return this.athleteName;
     }
 
-    public T getAthleteStatistics()
+    public Double getAthleteValue()
     {
-        return this.athleteStatistics;
+        return this.athleteStatistics.getAthleteValue();
     }
 }

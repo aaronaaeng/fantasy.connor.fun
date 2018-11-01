@@ -3,11 +3,13 @@ package fun.connor.fantasy.Endpoints;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import fun.connor.fantasy.Athlete.Athlete;
-import fun.connor.fantasy.Authentication.Authentication;
+import fun.connor.fantasy.Athlete.AthleteFactory;
+import fun.connor.fantasy.Auth.Authentication;
 import fun.connor.fantasy.Database.DatabaseAccessObject;
 import fun.connor.fantasy.League.LeagueManager;
 import fun.connor.fantasy.Statistics.BowlerStatistics;
 
+import java.util.HashMap;
 import java.util.UUID;
 
 import static spark.Spark.*;
@@ -16,13 +18,16 @@ public class Endpoints {
     private final Authentication authentication;
     private final DatabaseAccessObject databaseAccessObject;
     private final LeagueManager leagueManager;
+    private final AthleteFactory athleteFactory;
     private final Gson gson;
 
-    public Endpoints(Authentication authentication, DatabaseAccessObject databaseAccessObject, LeagueManager leagueManager)
+    public Endpoints(Authentication authentication, DatabaseAccessObject databaseAccessObject,
+                     LeagueManager leagueManager, AthleteFactory athleteFactory)
     {
         this.authentication = authentication;
         this.databaseAccessObject = databaseAccessObject;
         this.leagueManager = leagueManager;
+        this.athleteFactory = athleteFactory;
         this.gson = new Gson();
     }
 
@@ -46,10 +51,18 @@ public class Endpoints {
 
         post("/create_athlete", (req, res) -> {
             String athleteData = req.queryParamOrDefault("athleteData", "{}");
-            Athlete<BowlerStatistics> athlete = gson.fromJson(athleteData, new TypeToken<Athlete<BowlerStatistics>>(){}.getType());
+            String athleteType = req.queryParamOrDefault("athleteType", "{}");
+            Athlete athlete = gson.fromJson(athleteData, this.athleteFactory.createAthlete(athleteType).getClass());
             this.databaseAccessObject.saveAthlete(athlete);
             return "true";
         });
+
+        post("/get_athlete", (req, res) -> {
+            String athleteIDString = req.queryParams("athleteID");
+            UUID athleteId = UUID.fromString(athleteIDString);
+            return this.databaseAccessObject.loadAthlete(athleteId);
+        });
+
 
         post("/hire_athlete", (req, res) -> {
             String accessToken = req.queryParams("accessToken");
