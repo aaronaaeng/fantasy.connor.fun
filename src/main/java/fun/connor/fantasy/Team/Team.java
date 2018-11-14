@@ -3,11 +3,12 @@ package fun.connor.fantasy.Team;
 import fun.connor.fantasy.Budget.Budget;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.UUID;
 
 public class Team {
     private Budget budget;
-    private ArrayList<UUID> draftedAthletes;
+    private HashMap<UUID, Double> draftedAthletes = new HashMap<>();
 
     public Team(Budget budget)
     {
@@ -16,9 +17,9 @@ public class Team {
 
     public boolean hireAthlete(UUID athleteId, Double athleteValue)
     {
-        if (budget.hireAthlete(athleteValue))
+        if (!draftedAthletes.containsKey(athleteId) && budget.hireAthlete(athleteValue))
         {
-            draftedAthletes.add(athleteId);
+            draftedAthletes.put(athleteId, athleteValue);
             return true;
         }
         else
@@ -27,9 +28,9 @@ public class Team {
         }
     }
 
-    public boolean fireAthlete(UUID athleteId, Double athleteValue)
+    public boolean fireAthlete(UUID athleteId)
     {
-        if (draftedAthletes.contains(athleteId) && budget.fireAthlete(athleteValue))
+        if (draftedAthletes.containsKey(athleteId) && budget.fireAthlete(draftedAthletes.get(athleteId)))
         {
             draftedAthletes.remove(athleteId);
             return true;

@@ -8,8 +8,8 @@ import java.util.HashMap;
 import java.util.UUID;
 
 class League {
-    private UUID leagueId;
-    private Double teamBudget;
+    private final UUID leagueId;
+    private final Double teamBudget;
     private HashMap<UUID, Team> teamHashMap = new HashMap<>();
 
     League(UUID leagueId, Double teamBudget)
@@ -49,12 +49,12 @@ class League {
         }
     }
 
-    boolean fireAthlete(UUID userId, UUID athleteId, Double athleteValue)
+    boolean fireAthlete(UUID userId, UUID athleteId)
     {
         if (teamHashMap.containsKey(userId))
         {
             Team playerTeam = teamHashMap.get(userId);
-            return playerTeam.fireAthlete(athleteId, athleteValue);
+            return playerTeam.fireAthlete(athleteId);
         }
         else
         {

@@ -17,9 +17,8 @@ public class LeagueManager {
         this.databaseAccessObject = databaseAccessObject;
     }
 
-    public Boolean createLeague(Double teamBudget)
+    public Boolean createLeague(UUID leagueId, Double teamBudget)
     {
-        UUID leagueId = UUID.randomUUID();
         League newLeague = new League(leagueId, teamBudget);
         leagueHashMap.put(leagueId, newLeague);
         return true;
@@ -34,7 +33,7 @@ public class LeagueManager {
         }
         else
         {
-            return new ArrayList<Double>();
+            return new ArrayList<>();
         }
     }
 
@@ -70,8 +69,7 @@ public class LeagueManager {
         if (leagueHashMap.containsKey(leagueId))
         {
             League league = leagueHashMap.get(leagueId);
-            Double athleteValue = getAthleteValue(athleteId);
-            return league.fireAthlete(userId, athleteId, athleteValue);
+            return league.fireAthlete(userId, athleteId);
         }
         else
         {

@@ -40,7 +40,8 @@ public class Endpoints {
 
         post("/create_league", (req, res) -> {
             Double teamBudget = Double.valueOf(req.queryParamOrDefault("teamBudget", "1000"));
-            return this.leagueManager.createLeague(teamBudget);
+            UUID leagueId = UUID.randomUUID();
+            return this.leagueManager.createLeague(leagueId, teamBudget);
         });
 
         post("/add_team", (req, res) -> {
