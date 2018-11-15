@@ -22,7 +22,7 @@ public class Budget {
 
     public boolean hireAthlete(Double playerCost)
     {
-        if (playerCost < this.remainingFunds)
+        if (playerCost <= this.remainingFunds)
         {
             this.remainingFunds -= playerCost;
             return true;
@@ -35,7 +35,7 @@ public class Budget {
 
     public boolean fireAthlete(Double playerCost)
     {
-        if (this.remainingFunds + playerCost < this.totalFunds)
+        if (this.remainingFunds + playerCost <= this.totalFunds)
         {
             this.remainingFunds += playerCost;
             return true;
