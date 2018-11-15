@@ -4,10 +4,7 @@ import fun.connor.fantasy.Athlete.Athlete;
 import fun.connor.fantasy.Database.DatabaseAccessObject;
 import fun.connor.fantasy.Statistics.BowlerStatistics;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 public class LeagueManager {
     private final DatabaseAccessObject databaseAccessObject;
@@ -26,7 +23,7 @@ public class LeagueManager {
         return true;
     }
 
-    public ArrayList<Double> getLeagueStandings(UUID leagueId)
+    public HashMap<UUID, Double> getLeagueStandings(UUID leagueId)
     {
         if (leagueHashMap.containsKey(leagueId))
         {
@@ -35,7 +32,7 @@ public class LeagueManager {
         }
         else
         {
-            return new ArrayList<>();
+            return new HashMap<>();
         }
     }
 
@@ -81,7 +78,15 @@ public class LeagueManager {
 
     public HashMap<UUID, LeagueDetails> getLeagues()
     {
+        HashMap<UUID, LeagueDetails> leagueDetailsHashMap = new HashMap<>();
+        for (Map.Entry<UUID, League> entry : this.leagueHashMap.entrySet())
+        {
+            League league = entry.getValue();
+            LeagueDetails leagueDetails = new LeagueDetails(entry.getKey(), league.getAthleteType(), league.getTeamBudget());
+            leagueDetailsHashMap.put(entry.getKey(), leagueDetails);
+        }
 
+        return leagueDetailsHashMap;
     }
 
 

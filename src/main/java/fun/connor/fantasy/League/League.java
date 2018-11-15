@@ -20,22 +20,30 @@ class League {
         this.teamBudget = teamBudget;
     }
 
-    ArrayList<Double> getLeagueStandings()
+    HashMap<UUID, Double> getLeagueStandings()
     {
-        ArrayList<Double> standingsList = new ArrayList<>();
+        HashMap<UUID, Double> standingsMap = new HashMap<>();
         for (HashMap.Entry<UUID, Team> entry : teamHashMap.entrySet())
         {
-            standingsList.add(entry.getValue().getTeamScore());
+            standingsMap.put(entry.getKey(), entry.getValue().getTeamScore());
         }
-        return standingsList;
+        return standingsMap;
     }
 
     boolean addTeam(UUID userId)
     {
         Budget newBudget = new Budget(teamBudget);
         Team newTeam = new Team(newBudget);
-        teamHashMap.putIfAbsent(userId, newTeam);
-        return true;
+
+        if (teamHashMap.containsKey(userId))
+        {
+            return false;
+        }
+        else
+        {
+            teamHashMap.put(userId, newTeam);
+            return true;
+        }
     }
 
     boolean hireAthlete(UUID userId, UUID athleteId, Double athleteValue)
@@ -69,5 +77,5 @@ class League {
         return this.athleteType;
     }
 
-
+    Double getTeamBudget() { return this.teamBudget; }
 }

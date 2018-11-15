@@ -13,28 +13,51 @@ import static org.testng.Assert.*;
 public class LeagueTest {
     @Test
     public void testGetLeagueStandings() throws Exception {
-        League league = new League(UUID.randomUUID(), "bowler", 100.00);
+        League league = new League(UUID.randomUUID(), "bowler", 50.00);
         league.addTeam(UUID.randomUUID());
         league.addTeam(UUID.randomUUID());
-        Assert.assertTrue(false);
-        System.out.println(league.getLeagueStandings());
+        league.getLeagueStandings();
     }
 
     @Test
     public void testAddTeam() throws Exception {
-        League league = new League(UUID.randomUUID(), "bowler", 100.00);
-        Boolean returnValue = league.addTeam(UUID.randomUUID());
-        Assert.assertTrue(false);
+        League league = new League(UUID.randomUUID(), "bowler", 50.00);
+        UUID teamId = UUID.randomUUID();
+
+        Boolean returnValue = league.addTeam(teamId);
+        Assert.assertTrue(returnValue);
+
+        returnValue = league.addTeam(teamId);
+        Assert.assertFalse(returnValue);
     }
 
     @Test
     public void testHireAthlete() throws Exception {
-        Assert.assertTrue(false);
+        League league = new League(UUID.randomUUID(), "bowler", 50.00);
+        UUID userId = UUID.randomUUID();
+        UUID athleteId = UUID.randomUUID();
+        league.addTeam(userId);
+        Boolean returnValue = league.hireAthlete(userId, athleteId, 50.00);
+        Assert.assertTrue(returnValue);
+
+        returnValue = league.hireAthlete(userId, athleteId, 50.00);
+        Assert.assertFalse(returnValue);
+
+        returnValue = league.hireAthlete(userId, UUID.randomUUID(), 50.00);
+        Assert.assertFalse(returnValue);
     }
 
     @Test
     public void testFireAthlete() throws Exception {
-        Assert.assertTrue(false);
-    }
+        League league = new League(UUID.randomUUID(), "bowler", 50.00);
+        UUID userId = UUID.randomUUID();
+        UUID athleteId = UUID.randomUUID();
+        league.addTeam(userId);
+        league.hireAthlete(userId, athleteId, 50.00);
+        Boolean returnValue = league.fireAthlete(userId, UUID.randomUUID());
+        Assert.assertFalse(returnValue);
 
+        returnValue = league.fireAthlete(userId, athleteId);
+        Assert.assertTrue(returnValue);
+    }
 }
