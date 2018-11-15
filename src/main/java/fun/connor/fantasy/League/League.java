@@ -9,12 +9,14 @@ import java.util.UUID;
 
 class League {
     private final UUID leagueId;
+    private final String athleteType;
     private final Double teamBudget;
     private HashMap<UUID, Team> teamHashMap = new HashMap<>();
 
-    League(UUID leagueId, Double teamBudget)
+    League(UUID leagueId, String athleteType, Double teamBudget)
     {
         this.leagueId = leagueId;
+        this.athleteType = athleteType;
         this.teamBudget = teamBudget;
     }
 
@@ -60,6 +62,11 @@ class League {
         {
             return false;
         }
+    }
+
+    String getAthleteType()
+    {
+        return this.athleteType;
     }
 
 

@@ -16,7 +16,7 @@ public class LeagueManagerTest {
     public void testCreateLeague() throws Exception {
         DatabaseAccessObject dao = new DatabaseAccessObject();
         LeagueManager leagueManager = new LeagueManager(dao);
-        Boolean returnValue = leagueManager.createLeague(UUID.randomUUID(), 50.00);
+        Boolean returnValue = leagueManager.createLeague("bowler", 50.00);
         Assert.assertTrue(returnValue);
     }
 
@@ -34,7 +34,7 @@ public class LeagueManagerTest {
         UUID leagueId = UUID.randomUUID();
         UUID userId = UUID.randomUUID();
 
-        leagueManager.createLeague(leagueId, 50.00);
+        leagueManager.createLeague("bowler", 50.00);
         Boolean returnValue = leagueManager.addTeam(leagueId, userId);
         Assert.assertTrue(returnValue);
     }
@@ -46,7 +46,7 @@ public class LeagueManagerTest {
         UUID leagueId = UUID.randomUUID();
         UUID userId = UUID.randomUUID();
 
-        leagueManager.createLeague(leagueId, 50.00);
+        leagueManager.createLeague("bowler", 50.00);
         leagueManager.addTeam(leagueId, userId);
 
         Boolean returnValue = leagueManager.hireAthlete(leagueId, userId, UUID.randomUUID());
@@ -64,7 +64,7 @@ public class LeagueManagerTest {
         UUID userId = UUID.randomUUID();
         UUID athleteId = UUID.randomUUID();
 
-        leagueManager.createLeague(leagueId, 50.00);
+        leagueManager.createLeague("bowler", 50.00);
         leagueManager.addTeam(leagueId, userId);
 
         leagueManager.hireAthlete(leagueId, userId, athleteId);

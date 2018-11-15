@@ -1,15 +1,12 @@
 package fun.connor.fantasy.Endpoints;
 
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import fun.connor.fantasy.Athlete.Athlete;
 import fun.connor.fantasy.Athlete.AthleteFactory;
 import fun.connor.fantasy.Auth.Authentication;
 import fun.connor.fantasy.Database.DatabaseAccessObject;
 import fun.connor.fantasy.League.LeagueManager;
-import fun.connor.fantasy.Statistics.BowlerStatistics;
 
-import java.util.HashMap;
 import java.util.UUID;
 
 import static spark.Spark.*;
@@ -40,8 +37,8 @@ public class Endpoints {
 
         post("/create_league", (req, res) -> {
             Double teamBudget = Double.valueOf(req.queryParamOrDefault("teamBudget", "1000"));
-            UUID leagueId = UUID.randomUUID();
-            return this.leagueManager.createLeague(leagueId, teamBudget);
+            String athleteType = req.queryParamOrDefault("athleteType", "bowler");
+            return this.leagueManager.createLeague(athleteType, teamBudget);
         });
 
         post("/add_team", (req, res) -> {
@@ -59,7 +56,7 @@ public class Endpoints {
         });
 
         post("/get_athlete", (req, res) -> {
-            String athleteIDString = req.queryParams("athleteID");
+            String athleteIDString =  req.queryParams("athleteID");
             UUID athleteId = UUID.fromString(athleteIDString);
             return this.databaseAccessObject.loadAthlete(athleteId);
         });
@@ -90,9 +87,13 @@ public class Endpoints {
             return this.leagueManager.fireAthlete(leagueId, userId, athleteId);
         });
 
-        get("/get_league_standings", (req, res) -> {
+        post("/get_league_standings", (req, res) -> {
             UUID leagueId = UUID.fromString(req.queryParams("leagueId"));
             return this.leagueManager.getLeagueStandings(leagueId);
+        });
+
+        get("/get_leagues", (req, res) -> {
+            return this.leagueManager.getLeagues();
         });
     }
 }

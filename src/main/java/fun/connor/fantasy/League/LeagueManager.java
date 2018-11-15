@@ -6,6 +6,7 @@ import fun.connor.fantasy.Statistics.BowlerStatistics;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Set;
 import java.util.UUID;
 
 public class LeagueManager {
@@ -17,9 +18,10 @@ public class LeagueManager {
         this.databaseAccessObject = databaseAccessObject;
     }
 
-    public Boolean createLeague(UUID leagueId, Double teamBudget)
+    public Boolean createLeague(String athleteType, Double teamBudget)
     {
-        League newLeague = new League(leagueId, teamBudget);
+        UUID leagueId = UUID.randomUUID();
+        League newLeague = new League(leagueId, athleteType, teamBudget);
         leagueHashMap.put(leagueId, newLeague);
         return true;
     }
@@ -76,6 +78,12 @@ public class LeagueManager {
             return false;
         }
     }
+
+    public HashMap<UUID, LeagueDetails> getLeagues()
+    {
+
+    }
+
 
     private Double getAthleteValue(UUID athleteId)
     {

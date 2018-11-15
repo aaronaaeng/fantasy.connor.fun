@@ -13,7 +13,7 @@ import static org.testng.Assert.*;
 public class LeagueTest {
     @Test
     public void testGetLeagueStandings() throws Exception {
-        League league = new League(UUID.randomUUID(), 100.00);
+        League league = new League(UUID.randomUUID(), "bowler", 100.00);
         league.addTeam(UUID.randomUUID());
         league.addTeam(UUID.randomUUID());
         Assert.assertTrue(false);
@@ -22,7 +22,7 @@ public class LeagueTest {
 
     @Test
     public void testAddTeam() throws Exception {
-        League league = new League(UUID.randomUUID(), 100.00);
+        League league = new League(UUID.randomUUID(), "bowler", 100.00);
         Boolean returnValue = league.addTeam(UUID.randomUUID());
         Assert.assertTrue(false);
     }
