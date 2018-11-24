@@ -6,7 +6,6 @@ public class BowlerData extends GameData {
     private Double singlePinSpareAverage;
     private Double speedAverage;
     private Double matchWinLoss;
-    private Integer gamesPlayed;
 
     public BowlerData()
     {
@@ -29,17 +28,12 @@ public class BowlerData extends GameData {
         this.gamesPlayed = gamesPlayed;
     }
 
-    private Double recalculateAverage(Double currentAverage, Double newValue)
-    {
-        return ((currentAverage * this.gamesPlayed) + newValue) / (this.gamesPlayed + 1);
-    }
-
     Double getFirstBallAverage()
     {
         return firstBallAverage;
     }
 
-     void updateFirstBallAverage(Double firstBallAverage)
+    void updateFirstBallAverage(Double firstBallAverage)
     {
         this.firstBallAverage = this.recalculateAverage(this.firstBallAverage, firstBallAverage);
     }
@@ -82,10 +76,5 @@ public class BowlerData extends GameData {
     void updateMatchWinLoss(Double matchWinLoss)
     {
         this.matchWinLoss= this.recalculateAverage(this.matchWinLoss, matchWinLoss);
-    }
-
-    void updateGamesPlayed()
-    {
-        this.gamesPlayed += 1;
     }
 }

@@ -1,5 +1,6 @@
 package fun.connor.fantasy.League;
 
+import fun.connor.fantasy.Athlete.AthleteType;
 import fun.connor.fantasy.Database.DatabaseAccessObject;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -7,6 +8,7 @@ import org.testng.annotations.Test;
 import java.util.HashMap;
 import java.util.UUID;
 
+import static fun.connor.fantasy.Athlete.AthleteType.BOWLER;
 import static org.testng.Assert.*;
 
 /**
@@ -17,7 +19,7 @@ public class LeagueManagerTest {
     public void testCreateLeague() throws Exception {
         DatabaseAccessObject dao = new DatabaseAccessObject();
         LeagueManager leagueManager = new LeagueManager(dao);
-        Boolean returnValue = leagueManager.createLeague("bowler", 50.00);
+        Boolean returnValue = leagueManager.createLeague(BOWLER, 50.00);
         Assert.assertTrue(returnValue);
     }
 
@@ -25,7 +27,7 @@ public class LeagueManagerTest {
     public void testGetLeagueStandings() throws Exception {
         DatabaseAccessObject dao = new DatabaseAccessObject();
         LeagueManager leagueManager = new LeagueManager(dao);
-        leagueManager.createLeague("bowler", 100.00);
+        leagueManager.createLeague(BOWLER, 100.00);
         HashMap<UUID, LeagueDetails> leagueMap = leagueManager.getLeagues();
         for (UUID leagueId : leagueMap.keySet())
         {
@@ -38,12 +40,12 @@ public class LeagueManagerTest {
         DatabaseAccessObject dao = new DatabaseAccessObject();
         LeagueManager leagueManager = new LeagueManager(dao);
         UUID userId = UUID.randomUUID();
-        leagueManager.createLeague("bowler", 50.00);
+        leagueManager.createLeague(BOWLER, 50.00);
 
         HashMap<UUID, LeagueDetails> leagueMap = leagueManager.getLeagues();
         for (UUID leagueId : leagueMap.keySet())
         {
-            Boolean returnValue = leagueManager.addTeam(leagueId, userId);
+            Boolean returnValue = leagueManager.addTeam(leagueId, "test", userId);
             Assert.assertTrue(returnValue);
         }
     }
@@ -57,8 +59,8 @@ public class LeagueManagerTest {
         HashMap<UUID, LeagueDetails> leagueMap = leagueManager.getLeagues();
         for (UUID leagueId : leagueMap.keySet())
         {
-            leagueManager.createLeague("bowler", 50.00);
-            leagueManager.addTeam(leagueId, userId);
+            leagueManager.createLeague(BOWLER, 50.00);
+            leagueManager.addTeam(leagueId, "test", userId);
 
             Boolean returnValue = leagueManager.hireAthlete(leagueId, userId, UUID.randomUUID());
             Assert.assertTrue(returnValue);
@@ -77,8 +79,8 @@ public class LeagueManagerTest {
 
         HashMap<UUID, LeagueDetails> leagueMap = leagueManager.getLeagues();
         for (UUID leagueId : leagueMap.keySet()) {
-            leagueManager.createLeague("bowler", 50.00);
-            leagueManager.addTeam(leagueId, userId);
+            leagueManager.createLeague(BOWLER, 50.00);
+            leagueManager.addTeam(leagueId, "test", userId);
 
             leagueManager.hireAthlete(leagueId, userId, athleteId);
 

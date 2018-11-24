@@ -2,16 +2,19 @@ package fun.connor.fantasy.Team;
 
 import fun.connor.fantasy.Budget.Budget;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.UUID;
 
 public class Team {
-    private Budget budget;
-    private HashMap<UUID, Double> draftedAthletes = new HashMap<>();
+    private final String owner;
+    private final UUID teamId;
+    private final Budget budget;
+    private final HashMap<UUID, Double> draftedAthletes = new HashMap<>();
 
-    public Team(Budget budget)
+    public Team(String owner, Budget budget)
     {
+        this.owner = owner;
+        this.teamId = UUID.randomUUID();
         this.budget = budget;
     }
 
@@ -43,6 +46,13 @@ public class Team {
 
     public Double getTeamScore()
     {
-        return 0.0;
+        return (Math.random()*((150)+1));
+    }
+
+    public String getOwner() { return this.owner; }
+
+    public UUID getTeamId()
+    {
+        return this.teamId;
     }
 }

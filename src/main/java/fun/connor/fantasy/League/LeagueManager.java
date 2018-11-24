@@ -1,8 +1,10 @@
 package fun.connor.fantasy.League;
 
 import fun.connor.fantasy.Athlete.Athlete;
+import fun.connor.fantasy.Athlete.AthleteType;
 import fun.connor.fantasy.Database.DatabaseAccessObject;
 import fun.connor.fantasy.Statistics.BowlerStatistics;
+import fun.connor.fantasy.Team.TeamStanding;
 
 import java.util.*;
 
@@ -15,7 +17,7 @@ public class LeagueManager {
         this.databaseAccessObject = databaseAccessObject;
     }
 
-    public Boolean createLeague(String athleteType, Double teamBudget)
+    public Boolean createLeague(AthleteType athleteType, Double teamBudget)
     {
         UUID leagueId = UUID.randomUUID();
         League newLeague = new League(leagueId, athleteType, teamBudget);
@@ -23,7 +25,7 @@ public class LeagueManager {
         return true;
     }
 
-    public HashMap<UUID, Double> getLeagueStandings(UUID leagueId)
+    public ArrayList<TeamStanding> getLeagueStandings(UUID leagueId)
     {
         if (leagueHashMap.containsKey(leagueId))
         {
@@ -32,16 +34,16 @@ public class LeagueManager {
         }
         else
         {
-            return new HashMap<>();
+            return new ArrayList<>();
         }
     }
 
-    public boolean addTeam(UUID leagueId, UUID userId)
+    public boolean addTeam(UUID leagueId, String userName, UUID userId)
     {
         if (leagueHashMap.containsKey(leagueId))
         {
             League league = leagueHashMap.get(leagueId);
-            return league.addTeam(userId);
+            return league.addTeam(userName, userId);
         }
         else
         {
@@ -92,8 +94,7 @@ public class LeagueManager {
 
     private Double getAthleteValue(UUID athleteId)
     {
-//        Athlete<BowlerStatistics> athlete = this.databaseAccessObject.loadAthlete(athleteId);
-//        return athlete.getAthleteStatistics().getAthleteValue();
-        return 0.0;
+        Athlete athlete = databaseAccessObject.loadAthlete(athleteId);
+        return athlete.getAthleteValue();
     }
 }

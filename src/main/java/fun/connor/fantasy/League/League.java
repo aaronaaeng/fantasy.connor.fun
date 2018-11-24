@@ -1,39 +1,43 @@
 package fun.connor.fantasy.League;
 
+import fun.connor.fantasy.Athlete.AthleteType;
 import fun.connor.fantasy.Budget.Budget;
 import fun.connor.fantasy.Team.Team;
+import fun.connor.fantasy.Team.TeamStanding;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.UUID;
 
-class League {
+public class League {
     private final UUID leagueId;
-    private final String athleteType;
+    private final AthleteType athleteType;
     private final Double teamBudget;
     private HashMap<UUID, Team> teamHashMap = new HashMap<>();
 
-    League(UUID leagueId, String athleteType, Double teamBudget)
+    League(UUID leagueId, AthleteType athleteType, Double teamBudget)
     {
         this.leagueId = leagueId;
         this.athleteType = athleteType;
         this.teamBudget = teamBudget;
     }
 
-    HashMap<UUID, Double> getLeagueStandings()
+    ArrayList<TeamStanding> getLeagueStandings()
     {
-        HashMap<UUID, Double> standingsMap = new HashMap<>();
+        ArrayList<TeamStanding> leagueStandings = new ArrayList<>();
         for (HashMap.Entry<UUID, Team> entry : teamHashMap.entrySet())
         {
-            standingsMap.put(entry.getKey(), entry.getValue().getTeamScore());
+            Team team = entry.getValue();
+            TeamStanding teamStanding = new TeamStanding(team.getOwner(), team.getTeamScore());
+            leagueStandings.add(teamStanding);
         }
-        return standingsMap;
+        return leagueStandings;
     }
 
-    boolean addTeam(UUID userId)
+    boolean addTeam(String userName, UUID userId)
     {
         Budget newBudget = new Budget(teamBudget);
-        Team newTeam = new Team(newBudget);
+        Team newTeam = new Team(userName, newBudget);
 
         if (teamHashMap.containsKey(userId))
         {
@@ -72,10 +76,15 @@ class League {
         }
     }
 
-    String getAthleteType()
+    AthleteType getAthleteType()
     {
         return this.athleteType;
     }
 
     Double getTeamBudget() { return this.teamBudget; }
+
+    public UUID getLeagueId()
+    {
+        return this.leagueId;
+    }
 }

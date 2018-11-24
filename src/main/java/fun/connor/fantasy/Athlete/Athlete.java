@@ -5,13 +5,13 @@ import fun.connor.fantasy.Statistics.AthleteStatistics;
 
 import java.util.UUID;
 
-public abstract class Athlete {
-    private UUID athleteID;
-    private AthleteName athleteName;
-    private String athleteType;
+public class Athlete {
+    private final UUID athleteID;
+    private final AthleteName athleteName;
+    private final AthleteType athleteType;
     private AthleteStatistics athleteStatistics;
 
-    Athlete(UUID athleteID, AthleteName athleteName, String athleteType, AthleteStatistics athleteStatistics)
+    public Athlete(UUID athleteID, AthleteName athleteName, AthleteType athleteType, AthleteStatistics athleteStatistics)
     {
         this.athleteID = athleteID;
         this.athleteName = athleteName;
@@ -32,5 +32,12 @@ public abstract class Athlete {
     public Double getAthleteValue()
     {
         return this.athleteStatistics.getAthleteValue();
+    }
+
+    public AthleteType getAthleteType() { return this.athleteType; }
+
+    public void setAthleteStatistics(AthleteStatistics athleteStatistics)
+    {
+        this.athleteStatistics = athleteStatistics;
     }
 }

@@ -1,19 +1,33 @@
 package fun.connor.fantasy.Athlete;
 
+import fun.connor.fantasy.Statistics.AthleteStatistics;
+import fun.connor.fantasy.Statistics.BatterStatistics;
+import fun.connor.fantasy.Statistics.BowlerStatistics;
+import fun.connor.fantasy.Statistics.NullStatistics;
+
 import java.util.HashMap;
 import java.util.Map;
+
+import static fun.connor.fantasy.Athlete.AthleteType.BOWLER;
 
 /**
  * Created by Aaron on 10/28/2018.
  */
 public class AthleteFactory {
-    private Map<String, Athlete> athleteMap = new HashMap<String, Athlete>() {
+    private Map<AthleteType, AthleteStatistics> athleteMap = new HashMap<AthleteType, AthleteStatistics>() {
         {
-            put("bowler", new Bowler());
+            put(BOWLER, new BowlerStatistics());
         }
     };
-    public Athlete createAthlete(String athleteType)
+
+    public AthleteStatistics getAthleteStatistics(AthleteType athleteType)
     {
-        return athleteMap.get(athleteType);
+        switch (athleteType)
+        {
+            case BOWLER: return new BowlerStatistics();
+            case BATTER: return new BatterStatistics();
+            default:
+                return new NullStatistics();
+        }
     }
 }

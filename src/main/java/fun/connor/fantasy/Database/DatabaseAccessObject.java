@@ -1,31 +1,52 @@
 package fun.connor.fantasy.Database;
 
-import com.google.gson.Gson;
-import com.mongodb.MongoClient;
 import fun.connor.fantasy.Athlete.Athlete;
-import org.mongodb.morphia.Datastore;
-import org.mongodb.morphia.Morphia;
+import fun.connor.fantasy.League.League;
+import fun.connor.fantasy.Team.Team;
 
+import java.util.ArrayList;
 import java.util.UUID;
 
 public class DatabaseAccessObject {
-    private final Morphia morphia = new Morphia();
-    private final Gson gson = new Gson();
-    private final Datastore dataStore = morphia.createDatastore(new MongoClient(), "fantasy_database");
+    private final Database database = new Database();
 
     public DatabaseAccessObject()
     {
-        morphia.mapPackage("fun.connor.fantasy");
-        dataStore.ensureIndexes();
     }
 
-    public Athlete loadAthlete(UUID athleteID)
+
+    public void save(League league)
     {
-        Athlete athlete = gson.fromJson("test", Athlete.class);
-        return null;
+        database.saveLeague(league.getLeagueId(), league);
     }
 
-    public void saveAthlete(Athlete athlete) {
-        dataStore.save(athlete);
+    public void save(Team team)
+    {
+        database.saveTeam(team.getTeamId(), team);
+    }
+
+    public void save(Athlete athlete)
+    {
+        database.saveAthlete(athlete.getAthleteID(), athlete);
+    }
+
+    public League loadLeague(UUID leagueId)
+    {
+        return database.loadLeague(leagueId);
+    }
+
+    public Team loadTeam(UUID teamId)
+    {
+        return database.loadTeam(teamId);
+    }
+
+    public Athlete loadAthlete(UUID athleteId)
+    {
+        return database.loadAthlete(athleteId);
+    }
+
+    public ArrayList<Athlete> loadAllAthletes()
+    {
+        return database.loadAllAthletes();
     }
 }
