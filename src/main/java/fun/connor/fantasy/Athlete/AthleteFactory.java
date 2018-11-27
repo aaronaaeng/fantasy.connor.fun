@@ -19,13 +19,13 @@ import static fun.connor.fantasy.Athlete.AthleteType.BOWLER;
  */
 public class AthleteFactory {
     /**
-     *
+     * This method returns the properly typed statistics module or the null module if the input type was unknown.
      * @param athleteType The type of the athlete whose statistics module needs to be selected
-     * @return A reference to the new
+     * @return A reference to the new, correctly typed, statistics module
      */
     public AthleteStatistics getAthleteStatistics(AthleteType athleteType)
     {
-        // 
+        // A switch statement was used to increase readability with a default case
         switch (athleteType)
         {
             case BOWLER: return new BowlerStatistics();

@@ -8,6 +8,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.UUID;
 
+/**
+ * The database class is currently only being used as a stand-in for my original database model.  Because of many
+ * MongoDB errors, I removed it and its connection via Morphia.  The methods in this class are not significant.  Actual
+ * information on the database model can be found in the documentation for the DataAccessObject.
+ */
 class Database {
     private HashMap<UUID, League> leagueMap= new HashMap<>();
     private HashMap<UUID, Team> teamMap = new HashMap<>();

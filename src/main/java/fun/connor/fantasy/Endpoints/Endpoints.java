@@ -81,7 +81,7 @@ public class Endpoints {
             UUID userId = UUID.fromString(req.queryParams("userId"));
             UUID athleteId = UUID.fromString(req.queryParams("athleteId"));
 
-            return this.authentication.authenticateUserAccess(accessToken, leagueId) &&
+            return this.authentication.authorizeUserAccess(accessToken, leagueId) &&
                     this.leagueManager.hireAthlete(leagueId, userId, athleteId);
         }, json());
 
