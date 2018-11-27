@@ -32,6 +32,8 @@ public class Endpoints {
     }
 
     public void Serve() {
+        before((request, response) -> response.header("Access-Control-Allow-Origin", "*"));
+
         post("/login", (req, res) -> {
             String userName = req.queryParams("userName");
             String passHash = req.queryParams("passHash");
@@ -91,7 +93,7 @@ public class Endpoints {
             return this.leagueManager.fireAthlete(leagueId, userId, athleteId);
         }, json());
 
-        post("/get_league_standings", (req, res) -> {
+        get("/get_league_standings", (req, res) -> {
             UUID leagueId = UUID.fromString(req.queryParams("leagueId"));
             return this.leagueManager.getLeagueStandings(leagueId);
         }, json());

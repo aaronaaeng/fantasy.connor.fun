@@ -10,12 +10,14 @@ public class Team {
     private final UUID teamId;
     private final Budget budget;
     private final HashMap<UUID, Double> draftedAthletes = new HashMap<>();
+    private Double teamScore = 0.0;
 
     public Team(String owner, Budget budget)
     {
         this.owner = owner;
         this.teamId = UUID.randomUUID();
         this.budget = budget;
+        updateTeamScore();
     }
 
     public boolean hireAthlete(UUID athleteId, Double athleteValue)
@@ -23,6 +25,7 @@ public class Team {
         if (!draftedAthletes.containsKey(athleteId) && budget.hireAthlete(athleteValue))
         {
             draftedAthletes.put(athleteId, athleteValue);
+            updateTeamScore();
             return true;
         }
         else
@@ -44,9 +47,14 @@ public class Team {
         }
     }
 
+    private void updateTeamScore()
+    {
+        this.teamScore = (Math.random()*((150)+1));
+    }
+
     public Double getTeamScore()
     {
-        return (Math.random()*((150)+1));
+        return this.teamScore;
     }
 
     public String getOwner() { return this.owner; }

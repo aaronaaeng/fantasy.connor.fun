@@ -8,20 +8,24 @@ import fun.connor.fantasy.Statistics.NullStatistics;
 import java.util.HashMap;
 import java.util.Map;
 
+import static fun.connor.fantasy.Athlete.AthleteType.BATTER;
 import static fun.connor.fantasy.Athlete.AthleteType.BOWLER;
 
 /**
- * Created by Aaron on 10/28/2018.
+ * The AthleteFactory class manages the runtime selection of statistics modules.
+ *
+ * @author Aaron Aaeng
+ * @version 2.0
  */
 public class AthleteFactory {
-    private Map<AthleteType, AthleteStatistics> athleteMap = new HashMap<AthleteType, AthleteStatistics>() {
-        {
-            put(BOWLER, new BowlerStatistics());
-        }
-    };
-
+    /**
+     *
+     * @param athleteType The type of the athlete whose statistics module needs to be selected
+     * @return A reference to the new
+     */
     public AthleteStatistics getAthleteStatistics(AthleteType athleteType)
     {
+        // 
         switch (athleteType)
         {
             case BOWLER: return new BowlerStatistics();
