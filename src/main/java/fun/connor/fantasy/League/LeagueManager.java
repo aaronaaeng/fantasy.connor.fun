@@ -4,6 +4,7 @@ import fun.connor.fantasy.Athlete.Athlete;
 import fun.connor.fantasy.Athlete.AthleteType;
 import fun.connor.fantasy.Database.DatabaseAccessObject;
 import fun.connor.fantasy.Statistics.BowlerStatistics;
+import fun.connor.fantasy.Team.Team;
 import fun.connor.fantasy.Team.TeamStanding;
 
 import java.util.*;
@@ -140,6 +141,44 @@ public class LeagueManager {
         }
 
         return leagueDetailsHashMap;
+    }
+
+    /**
+     * Removes the desired team from the league.
+     * @param leagueId The ID of the league the team is in
+     * @param userId The ID of the team to be removed
+     * @return A flag indicating the removal was successful
+     */
+    public boolean removeTeam(UUID leagueId, UUID userId)
+    {
+        if (leagueHashMap.containsKey(leagueId))
+        {
+            League league = leagueHashMap.get(leagueId);
+            return league.removeTeam(userId);
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    /**
+     * Returns the requested team in the league
+     * @param leagueId The ID of the league containing the team
+     * @param userId The ID of the team's owner
+     * @return The team or null if none is found
+     */
+    public Team getTeamData(UUID leagueId, UUID userId)
+    {
+        if (leagueHashMap.containsKey(leagueId))
+        {
+            League league = leagueHashMap.get(leagueId);
+            return league.getTeam(userId);
+        }
+        else
+        {
+            return null;
+        }
     }
 
 

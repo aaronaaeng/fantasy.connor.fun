@@ -141,6 +141,27 @@ public class League {
      */
     Double getTeamBudget() { return this.teamBudget; }
 
+    /**
+     * Removes the desired team from the league.
+     * @param userId The ID of the team to be removed
+     * @return A flag indicating the removal was successful
+     */
+    boolean removeTeam(UUID userId)
+    {
+        teamHashMap.remove(userId);
+        return true;
+    }
+
+    /**
+     * Returns the requested team in the league
+     * @param userId The ID of the team's owner
+     * @return The team or null if none is found
+     */
+    Team getTeam(UUID userId)
+    {
+        return teamHashMap.getOrDefault(userId, null);
+    }
+
     public UUID getLeagueId()
     {
         return this.leagueId;

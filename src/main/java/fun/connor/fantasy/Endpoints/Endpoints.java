@@ -89,6 +89,19 @@ public class Endpoints {
             return this.leagueManager.addTeam(leagueId, userName, userId);
         }, json());
 
+        post("/remove_team", (req, res) -> {
+            UUID leagueId = UUID.fromString(req.queryParams("leagueId"));
+            String userName= req.queryParams("userName");
+            UUID userId = UUID.fromString(req.queryParams("userId"));
+            return this.leagueManager.removeTeam(leagueId, userId);
+        }, json());
+
+        get("/get_team_data", (req, res) -> {
+            UUID leagueId = UUID.fromString(req.queryParams("leagueId"));
+            UUID userId = UUID.fromString(req.queryParams("userId"));
+            return this.leagueManager.getTeamData(leagueId, userId);
+        }, json());
+
         post("/create_athlete", (req, res) -> {
             String athleteData = req.queryParamOrDefault("athleteData", "{}");
             String athleteTypeString = req.queryParamOrDefault("athleteType", "{}");
