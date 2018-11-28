@@ -9,15 +9,19 @@ import fun.connor.fantasy.Statistics.BowlerStatistics;
 import java.util.Random;
 import java.util.UUID;
 
+/**
+ * This class initializes the database with filler athletes.
+ */
 public class DatabaseInit {
     private final DatabaseAccessObject databaseAccessObject;
 
     public DatabaseInit(DatabaseAccessObject databaseAccessObject)
     {
         this.databaseAccessObject = databaseAccessObject;
+        initializeAthletes();
     }
 
-    public void initializeAthletes() {
+    private void initializeAthletes() {
         for (int i = 0; i < 5; i++) {
             BowlerData bowlerData = new BowlerData(randDouble(0, 10), randDouble(0, 1),
                     randDouble(0, 1), randDouble(7, 18),

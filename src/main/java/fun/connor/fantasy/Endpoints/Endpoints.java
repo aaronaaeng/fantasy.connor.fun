@@ -14,6 +14,11 @@ import java.util.UUID;
 import static fun.connor.fantasy.Endpoints.JsonUtils.json;
 import static spark.Spark.*;
 
+/**
+ * The Endpoints class houses the definitions for all REST endpoints.
+ * @author Aaron Aaeng
+ * @version 1.1
+ */
 public class Endpoints {
     private final Authentication authentication;
     private final DatabaseAccessObject databaseAccessObject;
@@ -21,6 +26,13 @@ public class Endpoints {
     private final AthleteFactory athleteFactory;
     private final Gson gson;
 
+    /**
+     * The Endpoints constructor takes a reference to all relevant objects.
+     * @param authentication A reference to the authentication object
+     * @param databaseAccessObject A reference to the database access object
+     * @param leagueManager A reference to the league manager
+     * @param athleteFactory A reference to the athlete factory
+     */
     public Endpoints(Authentication authentication, DatabaseAccessObject databaseAccessObject,
                      LeagueManager leagueManager, AthleteFactory athleteFactory)
     {
@@ -31,6 +43,10 @@ public class Endpoints {
         this.gson = new Gson();
     }
 
+    /**
+     * This method opens the REST endpoints for login, league creation, team addition, athlete creation, athlete hiring
+     * and firing, and getting all leagues and their standings.
+     */
     public void Serve() {
         before((request, response) -> response.header("Access-Control-Allow-Origin", "*"));
 

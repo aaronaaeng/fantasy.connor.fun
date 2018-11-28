@@ -4,15 +4,26 @@ import com.google.gson.Gson;
 import spark.ResponseTransformer;
 
 /**
- * Created by Aaron on 11/14/2018.
+ * This method provides JSON conversions for the endpoints.
  */
-public class JsonUtils {
-    public static String toJson(Object object)
+
+// This implementation was taken from https://dzone.com/articles/building-simple-restful-api
+class JsonUtils {
+    /**
+     * Returns the json encoding of the object
+     * @param object The object to be encoded
+     * @return The JSON string of the object
+     */
+    static String toJson(Object object)
     {
         return new Gson().toJson(object);
     }
 
-    public static ResponseTransformer json()
+    /**
+     * This returns a function pointer to the {@link JsonUtils#toJson(Object)} method
+     * @return A function pointer to {@link JsonUtils#toJson(Object)}
+     */
+    static ResponseTransformer json()
     {
         return JsonUtils::toJson;
     }
