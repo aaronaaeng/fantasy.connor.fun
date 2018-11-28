@@ -8,8 +8,7 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 /**
- * The DatabaseAccessObject class offers a simple API that abstracts out the actual functionality of the database and
- * its model.
+ * The DatabaseAccessObjectImpl implements the DatabaseAccessObject interface.
  * @author Aaron Aaeng
  * @version 1.1
  */
