@@ -10,7 +10,7 @@ import static fun.connor.fantasy.Athlete.AthleteType.BATTER;
 import static fun.connor.fantasy.Athlete.AthleteType.BOWLER;
 
 /**
- * Created by Aaron on 11/13/2018.
+ * Tests the AthleteFactory to ensure the correct statistics module is selected
  */
 public class AthleteFactoryTest {
     @Test

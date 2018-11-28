@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.*;
 
 /**
- * Created by Aaron on 11/14/2018.
+ * Tests the BowlerData object
  */
 public class BowlerDataTest {
     @Test

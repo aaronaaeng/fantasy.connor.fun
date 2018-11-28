@@ -4,8 +4,19 @@ package fun.connor.fantasy.Statistics;
  * The BatterData class extends GameData and adds methods and attributes specific to the statistics used in baseball.
  */
 public class BatterData extends GameData {
+    /**
+     * The batter's wins above replacement
+     */
     private Double war;
+
+    /**
+     * The batter's batting average
+     */
     private Double ba;
+
+    /**
+     * The batter's runs batted in
+     */
     private Double rbi;
 
     /**

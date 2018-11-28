@@ -9,7 +9,7 @@ import java.util.UUID;
 import static org.testng.Assert.*;
 
 /**
- * Created by Aaron on 11/13/2018.
+ * Tests the Team object to ensure the hire and fire methods work properly
  */
 public class TeamTest {
     @Test

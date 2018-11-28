@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.*;
 
 /**
- * Created by Aaron on 11/13/2018.
+ * Tests the Budget objects to ensure that the hire and fire methods are working
  */
 public class BudgetTest {
     @Test

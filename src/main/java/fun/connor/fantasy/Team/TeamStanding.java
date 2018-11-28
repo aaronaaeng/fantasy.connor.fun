@@ -6,7 +6,14 @@ package fun.connor.fantasy.Team;
  * protection.
  */
 public class TeamStanding {
+    /**
+     * The name of the team's owner
+     */
     private final String name;
+
+    /**
+     * The team's score
+     */
     private final Double score;
 
     /**

@@ -4,10 +4,29 @@ package fun.connor.fantasy.Statistics;
  * The BowlingData class extends GameData and adds methods and attributes specific to the statistics used in bowling.
  */
 public class BowlerData extends GameData {
+    /**
+     * The athlete's first ball average
+     */
     private Double firstBallAverage;
+
+    /**
+     * The athlete's multi pin spare average
+     */
     private Double multiPinSpareAverage;
+
+    /**
+     * The athlete's single pin spare average
+     */
     private Double singlePinSpareAverage;
+
+    /**
+     * The athlete's speed average
+     */
     private Double speedAverage;
+
+    /**
+     * The athlete's match win loss
+     */
     private Double matchWinLoss;
 
     /**

@@ -9,7 +9,7 @@ import static fun.connor.fantasy.Athlete.AthleteType.BOWLER;
 import static org.testng.Assert.*;
 
 /**
- * Created by Aaron on 11/13/2018.
+ * Tests the League's logic
  */
 public class LeagueTest {
     @Test

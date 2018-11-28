@@ -14,9 +14,24 @@ import java.util.UUID;
  * type of sport played in the league.
  */
 public class League {
+    /**
+     * The league's ID
+     */
     private final UUID leagueId;
+
+    /**
+     * The type of athlete that plays in the league
+     */
     private final AthleteType athleteType;
+
+    /**
+     * The starting budget value for a new team
+     */
     private final Double teamBudget;
+
+    /**
+     * A map of all teams keyed by their ID
+     */
     private HashMap<UUID, Team> teamHashMap = new HashMap<>();
 
     /**

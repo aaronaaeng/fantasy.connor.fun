@@ -6,7 +6,14 @@ package fun.connor.fantasy.Athlete;
  * @version 1.0
  */
 public class AthleteName {
+    /**
+     * The athlete's first name
+     */
     private final String firstName;
+
+    /**
+     * The athlete's last name
+     */
     private final String lastName;
 
     /**

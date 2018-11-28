@@ -13,15 +13,7 @@ import java.util.UUID;
  * This class initializes the database with filler athletes.
  */
 public class DatabaseInit {
-    private final DatabaseAccessObject databaseAccessObject;
-
-    public DatabaseInit(DatabaseAccessObject databaseAccessObject)
-    {
-        this.databaseAccessObject = databaseAccessObject;
-        initializeAthletes();
-    }
-
-    private void initializeAthletes() {
+    public static void initializeAthletes(DatabaseAccessObject databaseAccessObject) {
         for (int i = 0; i < 5; i++) {
             BowlerData bowlerData = new BowlerData(randDouble(0, 10), randDouble(0, 1),
                     randDouble(0, 1), randDouble(7, 18),
@@ -33,7 +25,7 @@ public class DatabaseInit {
         }
     }
 
-    private Double randDouble(Integer rangeMin, Integer rangeMax)
+    private static Double randDouble(Integer rangeMin, Integer rangeMax)
     {
         Random r = new Random();
         return rangeMin + (rangeMax - rangeMin) * r.nextDouble();
