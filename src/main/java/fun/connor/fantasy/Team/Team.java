@@ -9,10 +9,29 @@ import java.util.UUID;
  * The Team class provides all information for a team.  This includes the owner, roster, and budget.
  */
 public class Team {
+    /**
+     * The username of the team's owner
+     */
     private final String owner;
+
+    /**
+     * The ID of the team
+     */
     private final UUID teamId;
+
+    /**
+     * A reference to the team's budget object
+     */
     private final Budget budget;
+
+    /**
+     * A map of drafted athletes' values keyed on their IDs
+     */
     private final HashMap<UUID, Double> draftedAthletes = new HashMap<>();
+
+    /**
+     * The team's current score
+     */
     private Double teamScore = 0.0;
 
     /**

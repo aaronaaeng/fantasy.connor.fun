@@ -1,6 +1,5 @@
 package fun.connor.fantasy.League;
 
-import fun.connor.fantasy.Athlete.AthleteType;
 import fun.connor.fantasy.Database.DatabaseAccessObject;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -9,10 +8,9 @@ import java.util.HashMap;
 import java.util.UUID;
 
 import static fun.connor.fantasy.Athlete.AthleteType.BOWLER;
-import static org.testng.Assert.*;
 
 /**
- * Created by Aaron on 11/13/2018.
+ * Tests the LeagueManager's logic
  */
 public class LeagueManagerTest {
     @Test

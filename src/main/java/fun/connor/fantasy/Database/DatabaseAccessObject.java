@@ -14,6 +14,9 @@ import java.util.UUID;
  * @version 1.1
  */
 public class DatabaseAccessObject {
+    /**
+     * A reference to the database
+     */
     private final Database database = new Database();
 
     /**

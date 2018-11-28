@@ -13,9 +13,24 @@ import java.util.UUID;
  * @version 1.0
  */
 public class Athlete {
+    /**
+     * The ID of the athlete
+     */
     private final UUID athleteID;
+
+    /**
+     * The name of the athlete
+     */
     private final AthleteName athleteName;
+
+    /**
+     * The athlete's type
+     */
     private final AthleteType athleteType;
+
+    /**
+     * The athlete's statistics module
+     */
     private AthleteStatistics athleteStatistics;
 
     /**

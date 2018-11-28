@@ -5,7 +5,14 @@ package fun.connor.fantasy.Statistics;
  * batter data.
  */
 public class BatterStatistics implements AthleteStatistics {
+    /**
+     * A reference to the batter data
+     */
     private BatterData batterData = new BatterData();
+
+    /**
+     * The batter's value
+     */
     private Double athleteValue = 0.0;
 
     /**

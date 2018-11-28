@@ -5,7 +5,14 @@ package fun.connor.fantasy.Statistics;
  * bowling data.
  */
 public class BowlerStatistics implements AthleteStatistics {
+    /**
+     * A reference to the bowler's dataset
+     */
     private BowlerData bowlerData = new BowlerData();
+
+    /**
+     * The bowler's value
+     */
     private Double athleteValue = 0.0;
 
     /**

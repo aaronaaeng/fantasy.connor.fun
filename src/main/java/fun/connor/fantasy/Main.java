@@ -19,7 +19,7 @@ public class Main {
     {
         Authentication authentication = new Authentication();
         DatabaseAccessObject databaseAccessObject = new DatabaseAccessObject();
-        new DatabaseInit(databaseAccessObject);
+        DatabaseInit.initializeAthletes(databaseAccessObject);
         LeagueManager leagueManager = new LeagueManager(databaseAccessObject);
         AthleteFactory athleteFactory = new AthleteFactory();
         Endpoints endpoints = new Endpoints(authentication, databaseAccessObject, leagueManager, athleteFactory);

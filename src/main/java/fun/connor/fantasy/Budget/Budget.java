@@ -6,7 +6,14 @@ package fun.connor.fantasy.Budget;
  * @version 1.1
  */
 public class Budget {
+    /**
+     * The original starting team funds
+     */
     private final Double totalFunds;
+
+    /**
+     * The team's remaining funds
+     */
     private Double remainingFunds;
 
     /**

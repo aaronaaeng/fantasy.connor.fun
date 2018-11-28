@@ -13,7 +13,14 @@ import java.util.*;
  * relevant methods to interact with individual leagues.
  */
 public class LeagueManager {
+    /**
+     * A reference to the database access object
+     */
     private final DatabaseAccessObject databaseAccessObject;
+
+    /**
+     * A map of all leagues keyed on their ID
+     */
     private final HashMap<UUID, League> leagueHashMap = new HashMap<UUID, League>();
 
     /**

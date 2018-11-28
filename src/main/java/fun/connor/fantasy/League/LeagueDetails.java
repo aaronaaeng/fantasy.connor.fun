@@ -9,8 +9,19 @@ import java.util.UUID;
  * is created then immediately serialized to JSON and sent as a REST response.
  */
 class LeagueDetails {
+    /**
+     * The ID of the league
+     */
     private final UUID leagueId;
+
+    /**
+     * The type of athlete that plays in the league
+     */
     private final AthleteType athleteType;
+
+    /**
+     * The starting budget for a new team
+     */
     private final Double teamBudget;
 
     /**

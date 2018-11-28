@@ -20,10 +20,29 @@ import static spark.Spark.*;
  * @version 1.1
  */
 public class Endpoints {
+    /**
+     * A reference to the authentication object
+     */
     private final Authentication authentication;
+
+    /**
+     * A reference to the database access object
+     */
     private final DatabaseAccessObject databaseAccessObject;
+
+    /**
+     * A reference to the league manager
+     */
     private final LeagueManager leagueManager;
+
+    /**
+     * A reference to the athlete factory
+     */
     private final AthleteFactory athleteFactory;
+
+    /**
+     * A reference to a gson instance
+     */
     private final Gson gson;
 
     /**
