@@ -14,7 +14,7 @@ import static org.testng.Assert.*;
 public class TeamTest {
     @Test
     public void testHireAthlete() throws Exception {
-        Team team = new Team(new Budget(50.00));
+        Team team = new Team("", new Budget(50.00));
         UUID athleteId = UUID.randomUUID();
         Boolean returnValue = team.hireAthlete(athleteId, 50.00);
         Assert.assertTrue(returnValue);
@@ -28,7 +28,7 @@ public class TeamTest {
 
     @Test
     public void testFireAthlete() throws Exception {
-        Team team = new Team(new Budget(50.00));
+        Team team = new Team("", new Budget(50.00));
         UUID athleteId = UUID.randomUUID();
         team.hireAthlete(athleteId, 50.00);
         Boolean returnValue = team.fireAthlete(UUID.randomUUID());

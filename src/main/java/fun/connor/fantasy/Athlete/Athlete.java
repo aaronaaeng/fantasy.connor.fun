@@ -5,13 +5,28 @@ import fun.connor.fantasy.Statistics.AthleteStatistics;
 
 import java.util.UUID;
 
-public abstract class Athlete {
-    private UUID athleteID;
-    private AthleteName athleteName;
-    private String athleteType;
+/**
+ * The Athlete class holds all relevant information for a draftable athlete.  There is a single object for all athlete
+ * types.  Different types manifest in different statistics modules that can be changed at runtime.
+ *
+ * @author Aaron Aaeng
+ * @version 1.0
+ */
+public class Athlete {
+    private final UUID athleteID;
+    private final AthleteName athleteName;
+    private final AthleteType athleteType;
     private AthleteStatistics athleteStatistics;
 
-    Athlete(UUID athleteID, AthleteName athleteName, String athleteType, AthleteStatistics athleteStatistics)
+    /**
+     * The base constructor for the athlete.  The statistics module is the only attribute that can be changed with a
+     * setter.
+     * @param athleteID The ID assigned to the athlete
+     * @param athleteName The AthleteName object representing the athlete's name
+     * @param athleteType The type of athlete. i.e. the sport the athlete plays
+     * @param athleteStatistics The statistics module for the athlete.  This should correspond with its type
+     */
+    public Athlete(UUID athleteID, AthleteName athleteName, AthleteType athleteType, AthleteStatistics athleteStatistics)
     {
         this.athleteID = athleteID;
         this.athleteName = athleteName;
@@ -19,18 +34,48 @@ public abstract class Athlete {
         this.athleteStatistics = athleteStatistics;
     }
 
+    /**
+     * Returns the athlete's ID
+     * @return The athlete's ID
+     */
     public UUID getAthleteID()
     {
         return this.athleteID;
     }
 
+    /**
+     * Returns the athlete's name object
+     * @return The athlete's name object
+     */
     public AthleteName getAthleteName()
     {
         return this.athleteName;
     }
 
+    /**
+     * Returns the athlete's value
+     * @return The athlete's value
+     */
     public Double getAthleteValue()
     {
         return this.athleteStatistics.getAthleteValue();
+    }
+
+    /**
+     * Returns the athlete's type
+     * @return The athlete's type
+     */
+    public AthleteType getAthleteType()
+    {
+        return this.athleteType;
+    }
+
+    /**
+     * This method sets the athlete's statistics module.  The data contained in the old module is lost.
+     * @param athleteStatistics The new statistics module to be used
+     */
+    public void setAthleteStatistics(AthleteStatistics athleteStatistics)
+    {
+        this.athleteStatistics = athleteStatistics;
     }
 }
