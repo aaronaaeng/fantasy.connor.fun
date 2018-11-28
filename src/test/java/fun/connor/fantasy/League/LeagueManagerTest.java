@@ -1,6 +1,7 @@
 package fun.connor.fantasy.League;
 
 import fun.connor.fantasy.Database.DatabaseAccessObject;
+import fun.connor.fantasy.Database.DatabaseAccessObjectImpl;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -15,7 +16,7 @@ import static fun.connor.fantasy.Athlete.AthleteType.BOWLER;
 public class LeagueManagerTest {
     @Test
     public void testCreateLeague() throws Exception {
-        DatabaseAccessObject dao = new DatabaseAccessObject();
+        DatabaseAccessObject dao = new DatabaseAccessObjectImpl();
         LeagueManager leagueManager = new LeagueManager(dao);
         Boolean returnValue = leagueManager.createLeague(BOWLER, 50.00);
         Assert.assertTrue(returnValue);
@@ -23,7 +24,7 @@ public class LeagueManagerTest {
 
     @Test
     public void testGetLeagueStandings() throws Exception {
-        DatabaseAccessObject dao = new DatabaseAccessObject();
+        DatabaseAccessObject dao = new DatabaseAccessObjectImpl();
         LeagueManager leagueManager = new LeagueManager(dao);
         leagueManager.createLeague(BOWLER, 100.00);
         HashMap<UUID, LeagueDetails> leagueMap = leagueManager.getLeagues();
@@ -35,7 +36,7 @@ public class LeagueManagerTest {
 
     @Test
     public void testAddTeam() throws Exception {
-        DatabaseAccessObject dao = new DatabaseAccessObject();
+        DatabaseAccessObject dao = new DatabaseAccessObjectImpl();
         LeagueManager leagueManager = new LeagueManager(dao);
         UUID userId = UUID.randomUUID();
         leagueManager.createLeague(BOWLER, 50.00);
@@ -50,7 +51,7 @@ public class LeagueManagerTest {
 
     @Test
     public void testHireAthlete() throws Exception {
-        DatabaseAccessObject dao = new DatabaseAccessObject();
+        DatabaseAccessObject dao = new DatabaseAccessObjectImpl();
         LeagueManager leagueManager = new LeagueManager(dao);
         UUID userId = UUID.randomUUID();
 
@@ -70,7 +71,7 @@ public class LeagueManagerTest {
 
     @Test
     public void testFireAthlete() throws Exception {
-        DatabaseAccessObject dao = new DatabaseAccessObject();
+        DatabaseAccessObject dao = new DatabaseAccessObjectImpl();
         LeagueManager leagueManager = new LeagueManager(dao);
         UUID userId = UUID.randomUUID();
         UUID athleteId = UUID.randomUUID();
